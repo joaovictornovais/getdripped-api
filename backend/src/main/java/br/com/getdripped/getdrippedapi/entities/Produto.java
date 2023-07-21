@@ -2,6 +2,9 @@ package br.com.getdripped.getdrippedapi.entities;
 
 import java.util.Objects;
 
+import org.springframework.beans.BeanUtils;
+
+import br.com.getdripped.getdrippedapi.dtos.ProdutoDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +16,7 @@ import jakarta.persistence.Table;
 public class Produto {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private Double preco;
@@ -28,6 +31,10 @@ public class Produto {
 		this.preco = preco;
 		this.description = description;
 		this.imgUrl = imgUrl;
+	}
+	
+	public Produto(ProdutoDto produtoDto) {
+		BeanUtils.copyProperties(produtoDto, this);
 	}
 	
 	public Long getId() {
