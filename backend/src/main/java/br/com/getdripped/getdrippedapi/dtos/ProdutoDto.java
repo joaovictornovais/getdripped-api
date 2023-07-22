@@ -9,7 +9,7 @@ public class ProdutoDto {
 	private Long id;
 	private String nome;
 	private Double preco;
-	private String description;
+	private String descricao;
 	private String imgUrl;
 	
 	public ProdutoDto() {}
@@ -42,12 +42,12 @@ public class ProdutoDto {
 		this.preco = preco;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getImgUrl() {

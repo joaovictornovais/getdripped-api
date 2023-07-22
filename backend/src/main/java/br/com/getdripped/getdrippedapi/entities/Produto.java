@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import br.com.getdripped.getdrippedapi.dtos.ProdutoDto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,18 +19,22 @@ public class Produto {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private Double preco;
-	private String description;
+	@Column(nullable = false)
+	private String descricao;
+	@Column(nullable = false)
 	private String imgUrl;
 	
 	public Produto() {}
 	
-	public Produto(Long id, String nome, Double preco, String description, String imgUrl) {
+	public Produto(Long id, String nome, Double preco, String descricao, String imgUrl) {
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
-		this.description = description;
+		this.descricao = descricao;
 		this.imgUrl = imgUrl;
 	}
 	
@@ -55,11 +60,11 @@ public class Produto {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	public String getDescription() {
-		return description;
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	public String getImgUrl() {
 		return imgUrl;
