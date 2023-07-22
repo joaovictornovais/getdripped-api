@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import br.com.getdripped.getdrippedapi.dtos.ProdutoDto;
+import br.com.getdripped.getdrippedapi.enums.Categorias;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,17 +28,27 @@ public class Produto {
 	private String descricao;
 	@Column(nullable = false)
 	private String imgUrl;
+	private Categorias categoria;
 	
 	public Produto() {}
 	
-	public Produto(Long id, String nome, Double preco, String descricao, String imgUrl) {
+	public Produto(Long id, String nome, Double preco, String descricao, String imgUrl, Categorias categoria) {
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
 		this.descricao = descricao;
 		this.imgUrl = imgUrl;
+		this.categoria = categoria;
 	}
 	
+	public Categorias getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
+	}
+
 	public Produto(ProdutoDto produtoDto) {
 		BeanUtils.copyProperties(produtoDto, this);
 	}

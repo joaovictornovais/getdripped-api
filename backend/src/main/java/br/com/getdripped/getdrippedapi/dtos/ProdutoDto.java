@@ -3,6 +3,7 @@ package br.com.getdripped.getdrippedapi.dtos;
 import org.springframework.beans.BeanUtils;
 
 import br.com.getdripped.getdrippedapi.entities.Produto;
+import br.com.getdripped.getdrippedapi.enums.Categorias;
 
 public class ProdutoDto {
 	
@@ -11,7 +12,16 @@ public class ProdutoDto {
 	private Double preco;
 	private String descricao;
 	private String imgUrl;
+	private Categorias categoria;
 	
+	public Categorias getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
+	}
+
 	public ProdutoDto() {}
 
 	public ProdutoDto(Produto produto) {
