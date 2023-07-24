@@ -26,7 +26,7 @@ public class UsuarioController {
 		this.usuarioService = usuarioSerivce;
 	}
 	
-	@GetMapping()
+	@GetMapping
 	public List<UsuarioDto> listarUsuarios() {
 		return usuarioService.listarUsuarios();
 	}
@@ -34,14 +34,14 @@ public class UsuarioController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> buscarPorId(@PathVariable Long id) {
 		if (usuarioService.buscarPorId(id) == null) 
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não foi encontrado");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
 		else 
 			return ResponseEntity.status(HttpStatus.OK).body(usuarioService.buscarPorId(id));
 	}
 	
 	@PostMapping()
 	public ResponseEntity<UsuarioDto> criarUsuario(@RequestBody UsuarioDto usuario) {
-		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.criarUsuario(usuario));
+		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.criarUsuario(usuario));
 	}
 	
 	@DeleteMapping("/{id}")
@@ -55,7 +55,7 @@ public class UsuarioController {
 	public ResponseEntity<Object> editarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuario) {
 		if (usuarioService.buscarPorId(id) == null) 
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não foi encontrado");
-		else return ResponseEntity.status(HttpStatus.OK).body(usuarioService.editarUsuario(usuario, id));
+		else return ResponseEntity.status(HttpStatus.OK).body(usuarioService.editarUsuario(id, usuario));
 	}
 
 }

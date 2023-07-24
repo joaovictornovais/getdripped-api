@@ -45,14 +45,17 @@ public class ProdutoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<List<ProdutoDto>> deletarProduto(@PathVariable Long id) {
-		produtoService.deletarProduto(id);
-		return ResponseEntity.status(HttpStatus.OK).body(listarProdutos());
+	public ResponseEntity<Object> deletarProduto(@PathVariable Long id) {
+		if (produtoService.buscarPorId(id) == null) 
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não foi encontrado");
+		else return ResponseEntity.status(HttpStatus.OK).body(produtoService.deletarProduto(id));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ProdutoDto> editarProduto(@PathVariable Long id, @RequestBody ProdutoDto produto) {
-		return ResponseEntity.status(HttpStatus.OK).body(produtoService.editarProduto(id, produto));
+	public ResponseEntity<Object> editarProduto(@PathVariable Long id, @RequestBody ProdutoDto produto) {
+		if (produtoService.buscarPorId(id) == null) 
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não foi encontrado");
+		else return ResponseEntity.status(HttpStatus.OK).body(produtoService.editarProduto(id, produto));
 	}
 	
 }

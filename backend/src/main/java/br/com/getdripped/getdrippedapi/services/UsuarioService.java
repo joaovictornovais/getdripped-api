@@ -21,21 +21,21 @@ public class UsuarioService {
 	
 	@Transactional(readOnly = true)
 	public List<UsuarioDto> listarUsuarios() {
-		List<Usuario> usuarios = usuarioRepository.findAll();
+		var usuarios = usuarioRepository.findAll();
 		return usuarios.stream().map(x -> new UsuarioDto(x)).toList();
 	}
 	
 	@Transactional(readOnly = true)
 	public UsuarioDto buscarPorId(Long id) {
-		var optionalUsuario = usuarioRepository.findById(id);
-		if (optionalUsuario.isEmpty()) return null;
-		else return new UsuarioDto(optionalUsuario.get());
+		var usuario = usuarioRepository.findById(id);
+		if (usuario.isEmpty()) return null;
+		else return new UsuarioDto(usuario.get());
 	}
 	
 	@Transactional
 	public UsuarioDto criarUsuario(UsuarioDto usuario) {
-		var novoProduto = usuarioRepository.save(new Usuario(usuario));
-		return buscarPorId(novoProduto.getId());
+		var novoUsuario = usuarioRepository.save(new Usuario(usuario));
+		return buscarPorId(novoUsuario.getId());
 	}
 	
 	@Transactional
@@ -45,7 +45,7 @@ public class UsuarioService {
 	}
 	
 	@Transactional
-	public UsuarioDto editarUsuario(UsuarioDto usuario, Long id) {
+	public UsuarioDto editarUsuario(Long id, UsuarioDto usuario) {
 		var usuarioNovo = new UsuarioDto();
 		BeanUtils.copyProperties(usuario, usuarioNovo);
 		usuarioNovo.setId(id);

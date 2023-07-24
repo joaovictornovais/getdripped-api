@@ -35,12 +35,13 @@ public class ProdutoService {
 	@Transactional
 	public ProdutoDto criarProduto(ProdutoDto produto) {
 		var novoProduto = produtoRepository.save(new Produto(produto));
-		return new ProdutoDto(novoProduto);
+		return buscarPorId(novoProduto.getId());
 	}
 	
 	@Transactional
-	public void deletarProduto(Long id) {
+	public List<ProdutoDto> deletarProduto(Long id) {
 		produtoRepository.deleteById(id);
+		return listarProdutos();
 	}
 	
 	public ProdutoDto editarProduto(Long id, ProdutoDto produto) {
@@ -49,7 +50,6 @@ public class ProdutoService {
 		produtoNovo.setId(id);
 		produtoRepository.save(new Produto(produtoNovo));
 		return produtoNovo;
-		
 	}
 
 }

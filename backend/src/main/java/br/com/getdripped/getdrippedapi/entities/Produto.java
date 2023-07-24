@@ -41,16 +41,16 @@ public class Produto {
 		this.categoria = categoria;
 	}
 	
+	public Produto(ProdutoDto produtoDto) {
+		BeanUtils.copyProperties(produtoDto, this);
+	}
+	
 	public Categorias getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
-	}
-
-	public Produto(ProdutoDto produtoDto) {
-		BeanUtils.copyProperties(produtoDto, this);
 	}
 	
 	public Long getId() {
