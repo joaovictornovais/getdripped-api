@@ -13,6 +13,12 @@ public class ProdutoDto {
 	private String descricao;
 	private String imgUrl;
 	private Categorias categoria;
+
+	public ProdutoDto() {}
+
+	public ProdutoDto(Produto produto) {
+		BeanUtils.copyProperties(produto, this);
+	}
 	
 	public Categorias getCategoria() {
 		return categoria;
@@ -20,12 +26,6 @@ public class ProdutoDto {
 
 	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
-	}
-
-	public ProdutoDto() {}
-
-	public ProdutoDto(Produto produto) {
-		BeanUtils.copyProperties(produto, this);
 	}
 
 	public Long getId() {

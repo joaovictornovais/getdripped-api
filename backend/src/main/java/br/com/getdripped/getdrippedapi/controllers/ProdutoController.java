@@ -33,11 +33,10 @@ public class ProdutoController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> buscarPorId(@PathVariable Long id) {
-		if (produtoService.buscarPorId(id) == null ) {
+		if (produtoService.buscarPorId(id) == null) 
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
-		} else {
+		else 
 			return ResponseEntity.status(HttpStatus.OK).body(produtoService.buscarPorId(id));
-		}
 	}
 	
 	@PostMapping()
