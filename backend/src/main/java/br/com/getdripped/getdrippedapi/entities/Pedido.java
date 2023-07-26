@@ -22,7 +22,7 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant momento;
-	private StatusPedido statusPedido;
+	private Integer statusPedido;
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Usuario cliente;
@@ -33,7 +33,7 @@ public class Pedido {
 	public Pedido(Long id, Instant momento, StatusPedido statusPedido, Usuario cliente) {
 		this.id = id;
 		this.momento = momento;
-		this.statusPedido = statusPedido;
+		setStatusPedido(statusPedido);
 		this.cliente = cliente;
 	}
 	
@@ -58,11 +58,11 @@ public class Pedido {
 	}
 
 	public StatusPedido getStatusPedido() {
-		return statusPedido;
+		return StatusPedido.valueOf(statusPedido);
 	}
 
 	public void setStatusPedido(StatusPedido statusPedido) {
-		this.statusPedido = statusPedido;
+		if (statusPedido != null) this.statusPedido = statusPedido.getCode();
 	}
 
 	public Usuario getCliente() {

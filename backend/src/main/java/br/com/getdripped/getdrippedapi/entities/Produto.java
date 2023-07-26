@@ -28,7 +28,7 @@ public class Produto {
 	private String descricao;
 	@Column(nullable = false)
 	private String imgUrl;
-	private Categorias categoria;
+	private Integer categoria;
 	
 	public Produto() {}
 	
@@ -38,7 +38,7 @@ public class Produto {
 		this.preco = preco;
 		this.descricao = descricao;
 		this.imgUrl = imgUrl;
-		this.categoria = categoria;
+		setCategoria(categoria);
 	}
 	
 	public Produto(ProdutoDto produtoDto) {
@@ -46,11 +46,11 @@ public class Produto {
 	}
 	
 	public Categorias getCategoria() {
-		return categoria;
+		return Categorias.valueOf(categoria);
 	}
 
 	public void setCategoria(Categorias categoria) {
-		this.categoria = categoria;
+		if (categoria != null) this.categoria = categoria.getCode();
 	}
 	
 	public Long getId() {
