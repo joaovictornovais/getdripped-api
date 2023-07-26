@@ -5,6 +5,7 @@ import java.time.Instant;
 import org.springframework.beans.BeanUtils;
 
 import br.com.getdripped.getdrippedapi.dtos.PedidoDto;
+import br.com.getdripped.getdrippedapi.enums.StatusPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,16 +22,18 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant momento;
-	
+	private StatusPedido statusPedido;
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Usuario cliente;
 	
+	
 	public Pedido() {}
 
-	public Pedido(Long id, Instant momento, Usuario cliente) {
+	public Pedido(Long id, Instant momento, StatusPedido statusPedido, Usuario cliente) {
 		this.id = id;
 		this.momento = momento;
+		this.statusPedido = statusPedido;
 		this.cliente = cliente;
 	}
 	
@@ -52,6 +55,14 @@ public class Pedido {
 
 	public void setMomento(Instant momento) {
 		this.momento = momento;
+	}
+
+	public StatusPedido getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(StatusPedido statusPedido) {
+		this.statusPedido = statusPedido;
 	}
 
 	public Usuario getCliente() {

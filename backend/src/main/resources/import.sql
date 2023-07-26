@@ -11,6 +11,6 @@ INSERT INTO TB_USERS (nome, sobrenome, cpf, data_de_nascimento, telefone, email,
 INSERT INTO TB_USERS (nome, sobrenome, cpf, data_de_nascimento, telefone, email, senha) VALUES ('Arthur', 'Rodrigues', '38523478493', '2003-06-17', '11948572643', 'arthur@gmail.com', 'senha456')
 INSERT INTO TB_USERS (nome, sobrenome, cpf, data_de_nascimento, telefone, email, senha) VALUES ('Mateus Henrique', 'Meira', '98237445673', '2004-08-17', '11987909846', 'henrique@gmail.com', 'senha789')
 
-INSERT INTO TB_ORDERS (client_id, momento) VALUES (1, '2023-07-24T13:38:10Z')
-INSERT INTO TB_ORDERS (client_id, momento) VALUES (2, '2023-06-26T18:22:17Z')
-INSERT INTO TB_ORDERS (client_id, momento) VALUES (1, '2023-05-24T08:09:23Z')
+INSERT INTO TB_ORDERS (client_id, momento, status_pedido) VALUES (1, '2023-07-24T13:38:10Z', 2)
+INSERT INTO TB_ORDERS (client_id, momento, status_pedido) VALUES (2, '2023-06-26T18:22:17Z', 1)
+INSERT INTO TB_ORDERS (client_id, momento, status_pedido) VALUES (1, '2023-05-24T08:09:23Z', 2)

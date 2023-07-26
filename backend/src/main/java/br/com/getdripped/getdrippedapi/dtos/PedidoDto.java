@@ -6,18 +6,21 @@ import org.springframework.beans.BeanUtils;
 
 import br.com.getdripped.getdrippedapi.entities.Pedido;
 import br.com.getdripped.getdrippedapi.entities.Usuario;
+import br.com.getdripped.getdrippedapi.enums.StatusPedido;
 
 public class PedidoDto {
 
 	private Long id;
 	private Instant momento;
+	private StatusPedido statusPedido;
 	private Usuario cliente;
 	
 	public PedidoDto() {}
 
-	public PedidoDto(Long id, Instant momento, Usuario cliente) {
+	public PedidoDto(Long id, Instant momento, StatusPedido statusPedido, Usuario cliente) {
 		this.id = id;
 		this.momento = momento;
+		this.statusPedido = statusPedido;
 		this.cliente = cliente;
 	}
 	
@@ -39,6 +42,14 @@ public class PedidoDto {
 
 	public void setMomento(Instant momento) {
 		this.momento = momento;
+	}
+
+	public StatusPedido getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(StatusPedido statusPedido) {
+		this.statusPedido = statusPedido;
 	}
 
 	public Usuario getCliente() {
