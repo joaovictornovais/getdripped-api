@@ -1,8 +1,12 @@
 package br.com.getdripped.getdrippedapi.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.getdripped.getdrippedapi.dtos.UsuarioDto;
 import jakarta.persistence.Column;
@@ -10,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,21 +23,25 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	@Column(nullable = false)
-	public String nome;
+	private String nome;
 	@Column(nullable = false)
-	public String sobrenome;
+	private String sobrenome;
 	@Column(nullable = false)
-	public String cpf;
+	private String cpf;
 	@Column(nullable = false)
-	public LocalDate dataDeNascimento;
+	private LocalDate dataDeNascimento;
 	@Column(nullable = false)
-	public String telefone;
+	private String telefone;
 	@Column(nullable = false)
-	public String email;
+	private String email;
 	@Column(nullable = false)
-	public String senha;
+	private String senha;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Usuario() {}
 
@@ -115,4 +124,9 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	
 }
