@@ -1,7 +1,12 @@
 package br.com.getdripped.getdrippedapi.dtos;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.BeanUtils;
 
+import br.com.getdripped.getdrippedapi.entities.ItemPedido;
+import br.com.getdripped.getdrippedapi.entities.Pedido;
 import br.com.getdripped.getdrippedapi.entities.Produto;
 import br.com.getdripped.getdrippedapi.enums.Categorias;
 
@@ -13,11 +18,21 @@ public class ProdutoDto {
 	private String descricao;
 	private String imgUrl;
 	private Categorias categoria;
+	
+	private Set<ItemPedido> items = new HashSet<>();
 
 	public ProdutoDto() {}
 
 	public ProdutoDto(Produto produto) {
 		BeanUtils.copyProperties(produto, this);
+	}
+	
+	public Set<Pedido> getPedidos() {
+		Set<Pedido> set = new HashSet<>();
+		for (ItemPedido x : items) {
+			set.add(x.getPedido());
+		}
+		return set;
 	}
 	
 	public Categorias getCategoria() {

@@ -1,6 +1,8 @@
 package br.com.getdripped.getdrippedapi.entities;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
@@ -11,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +32,9 @@ public class Produto {
 	@Column(nullable = false)
 	private String imgUrl;
 	private Integer categoria;
+	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemPedido> items = new HashSet<>();
 	
 	public Produto() {}
 	
@@ -51,6 +57,14 @@ public class Produto {
 
 	public void setCategoria(Categorias categoria) {
 		if (categoria != null) this.categoria = categoria.getCode();
+	}
+	
+	public Set<Pedido> getPedidos() {
+		Set<Pedido> set = new HashSet<>();
+		for (ItemPedido x : items) {
+			set.add(x.getPedido());
+		}
+		return set;
 	}
 	
 	public Long getId() {

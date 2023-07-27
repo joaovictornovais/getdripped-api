@@ -18,7 +18,7 @@ public class PedidoDto {
 	private StatusPedido statusPedido;
 	private Usuario cliente;
 	
-	private Set<ItemPedidoDto> items = new HashSet<>();
+	private Set<ItemPedido> items = new HashSet<>();
 	
 	public PedidoDto() {}
 
@@ -65,7 +65,7 @@ public class PedidoDto {
 		this.cliente = cliente;
 	}
 	
-	public Set<ItemPedidoDto> getItems() {
+	public Set<ItemPedido> getItems() {
 		return items;
 	}
 }

@@ -14,3 +14,5 @@ INSERT INTO TB_USERS (nome, sobrenome, cpf, data_de_nascimento, telefone, email,
 INSERT INTO TB_ORDERS (client_id, momento, status_pedido) VALUES (1, '2023-07-24T13:38:10Z', 2)
 INSERT INTO TB_ORDERS (client_id, momento, status_pedido) VALUES (2, '2023-06-26T18:22:17Z', 1)
 INSERT INTO TB_ORDERS (client_id, momento, status_pedido) VALUES (1, '2023-05-24T08:09:23Z', 2)
+
+INSERT INTO TB_ITEM_PEDIDO (pedido_id, produto_id, quantidade, preco) VALUES (1, 1, 1, 99.99)
