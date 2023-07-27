@@ -27,7 +27,6 @@ public class Pedido {
 	@JoinColumn(name = "client_id")
 	private Usuario cliente;
 	
-	
 	public Pedido() {}
 
 	public Pedido(Long id, Instant momento, StatusPedido statusPedido, Usuario cliente) {
