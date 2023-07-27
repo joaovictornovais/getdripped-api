@@ -1,25 +1,18 @@
-package br.com.getdripped.getdrippedapi.entities;
+package br.com.getdripped.getdrippedapi.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import br.com.getdripped.getdrippedapi.entities.Pedido;
+import br.com.getdripped.getdrippedapi.entities.Produto;
 import br.com.getdripped.getdrippedapi.entities.pk.ItemPedidoPK;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "tb_item_pedido")
-public class ItemPedido {
-
-	@EmbeddedId
-	private ItemPedidoPK id = new ItemPedidoPK();
+public class ItemPedidoDto {
 	
+	private ItemPedidoPK id = new ItemPedidoPK();
 	private Integer quantidade;
 	private Double preco;
 	
-	public ItemPedido() {}
+	public ItemPedidoDto() {}
 
-	public ItemPedido(Pedido pedido, Produto produto, Integer quantidade, Double preco) {
+	public ItemPedidoDto(Pedido pedido, Produto produto, Integer quantidade, Double preco) {
 		super();
 		id.setPedido(pedido);
 		id.setProduto(produto);
@@ -27,7 +20,6 @@ public class ItemPedido {
 		this.preco = preco;
 	}
 	
-	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}

@@ -1,6 +1,8 @@
 package br.com.getdripped.getdrippedapi.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +29,9 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Usuario cliente;
+	
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> items = new HashSet<>();
 	
 	public Pedido() {}
 
@@ -70,5 +76,9 @@ public class Pedido {
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Set<ItemPedido> getItems() {
+		return items;
 	}
 }

@@ -1,9 +1,12 @@
 package br.com.getdripped.getdrippedapi.dtos;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
+import br.com.getdripped.getdrippedapi.entities.ItemPedido;
 import br.com.getdripped.getdrippedapi.entities.Pedido;
 import br.com.getdripped.getdrippedapi.entities.Usuario;
 import br.com.getdripped.getdrippedapi.enums.StatusPedido;
@@ -14,6 +17,8 @@ public class PedidoDto {
 	private Instant momento;
 	private StatusPedido statusPedido;
 	private Usuario cliente;
+	
+	private Set<ItemPedidoDto> items = new HashSet<>();
 	
 	public PedidoDto() {}
 
@@ -58,5 +63,9 @@ public class PedidoDto {
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Set<ItemPedidoDto> getItems() {
+		return items;
 	}
 }
